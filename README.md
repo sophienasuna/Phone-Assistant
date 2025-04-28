@@ -1,4 +1,4 @@
-# phone_navigation_assitant
+# Phone Assitant
 
 Voice Activated Offline Phone Assistant for the Visually Impaired
 
