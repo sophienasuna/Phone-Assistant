@@ -17,7 +17,7 @@ class _HomePageState extends State<HomePage> {
   FlutterTts flutterTts = FlutterTts();
 
   String msg = 'Hello, welcome to your assistant, Shake your phone to start interactions.';
-  String instruction = 'How can I help you, Make Call, Send Message or Read Message.';
+  String instruction = 'How can I help you, Make Call, Send Message or Read Message. ';
   String statusMSG = '';
 
   // Threshold for shake detection
