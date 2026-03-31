@@ -42,20 +42,6 @@ Future<List<SimpleContact>> callContact(String nameQuery) async {
     return SimpleContact(name: c.displayName, phoneNumber: number);
   }).toList();
 
-  if (simplifiedMatches.length == 1) {
-    final contact = simplifiedMatches.first;
-    await FlutterPhoneDirectCaller.callNumber(contact.phoneNumber);
-    // final uri = Uri(scheme: 'tel', path: contact.phoneNumber);
-    // if (await canLaunchUrl(uri)) {
-    //   await launchUrl(uri);
-    //   return []; // Dialed successfully
-    // } else {
-    //   // throw Exception('Could not launch dialer for ${contact.phoneNumber}');
-    //   return [];
-    // }
-    return [];
-  }
-
   // 5. Return list to present options to user
   return simplifiedMatches;
 }

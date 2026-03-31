@@ -50,3 +50,53 @@ VoiceCommand parseVoiceCommand(String spokenWord) {
 
   return VoiceCommand(matchedCommand, value);
 }
+
+
+int parseNumberFromSpeech(String spokenWord) {
+  print('------X->SPOKEN WORD-<X----> $spokenWord');
+  final cleaned = spokenWord.toLowerCase().replaceAll(RegExp(r'[^\w\s]'), '').trim();
+
+  const numberWords = {
+    'zero': 0,
+    'one': 1,
+    'two': 2,
+    'three': 3,
+    'four': 4,
+    'five': 5,
+    'six': 6,
+    'seven': 7,
+    'eight': 8,
+    'nine': 9,
+    'ten': 10,
+    'eleven': 11,
+    'twelve': 12,
+    'thirteen': 13,
+    'fourteen': 14,
+    'fifteen': 15,
+    'sixteen': 16,
+    'seventeen': 17,
+    'eighteen': 18,
+    'nineteen': 19,
+    'twenty': 20
+    // Add more if needed
+  };
+
+  // Try exact match
+  if (numberWords.containsKey(cleaned)) {
+    return numberWords[cleaned]!;
+  }
+
+  // Try fuzzy match using tokenSortRatio
+  int bestScore = 0;
+  int matchedNumber = -1;
+  for (var entry in numberWords.entries) {
+    final score = tokenSortRatio(cleaned, entry.key);
+    if (score > bestScore && score >= 80) {
+      bestScore = score;
+      matchedNumber = entry.value;
+    }
+  }
+
+  return matchedNumber; // Returns -1 if no match
+}
+
